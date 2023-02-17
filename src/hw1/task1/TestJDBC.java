@@ -1,4 +1,4 @@
-package hw1;
+package hw1.task1;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
