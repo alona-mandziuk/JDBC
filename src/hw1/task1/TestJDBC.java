@@ -19,13 +19,17 @@ class TestJDBC {
         try {
             connection = DriverManager.getConnection(URL, LOGIN, PASSWORD);
             statement = connection.createStatement();
-            statement.execute("insert into assortment (product_name, price) " +
+            statement.execute("insert  into assortment (product_name, price) " +
                     "values ('Bouncies', 3)");
             statement.addBatch("insert into assortment (product_name, price)" +
                     "values ('Fish Stripes', 2.5)");
             statement.addBatch("insert into assortment (product_name, price)" +
                     "values ('Treats with Lamb flavour', 4.5)");
+
             statement.executeBatch();
+            statement.executeUpdate("update assortment set price = price + 0.6 where product_name = 'Bouncies'");
+            statement.execute("delete from assortment where id > 10");
+
 
         } catch (SQLException e) {
             e.printStackTrace();
