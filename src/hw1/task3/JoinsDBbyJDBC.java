@@ -5,7 +5,7 @@ import java.sql.*;
 class JoinsDBbyJDBC {
     private static final String URL = "jdbc:mysql://localhost:3306/MyJoinsDB";
     private static final String LOGIN = "root";
-    private static final String PASSWORD = "21032011philia";
+    private static final String PASSWORD = "root";
     public static void main(String[] args) {
         String contacts = "select Personnel.pers_ID, Personnel.name, Personnel.surname, Personnel.phone, " +
                 "Another_Info.city, Another_Info.adress from Personnel join Another_Info on Personnel.pers_ID = Another_Info.id";
