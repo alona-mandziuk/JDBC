@@ -1,0 +1,12 @@
+Клієнт може мати кілька рахунків в банку.
+Враховувати можливість блокування/розблокування рахунку.
+Реалізувати пошук та сортування рахунків.
+Вирахування загальної суми по рахункам.
+Вирахування суми по всім рахункам, що мають позитивний та негативний баланс окремо.
+
+Client can have many accounts in the bank.
+Consider the ability block/unblock the account.
+Realize:
+    - the ability to search and sort account;
+    - counting the amount balance on all accounts;
+    - counting the amount balance on accounts with positive and negative balance separately.
