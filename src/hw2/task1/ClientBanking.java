@@ -1,6 +1,7 @@
 package hw2.task1;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 class ClientBanking {
     public static void main(String[] args) throws Exception {
@@ -10,6 +11,7 @@ class ClientBanking {
         uah.setBalance(21205);
         uah.setBalanceInUAH();
         uah.setType();
+        uah.setBlock("unblock");
         accounts.add(uah);
 
         Account usd = new Account("4149523678965412");
@@ -17,6 +19,7 @@ class ClientBanking {
         usd.setBalance(12000);
         usd.setBalanceInUAH();
         usd.setType();
+        usd.setBlock("unblock");
         accounts.add(usd);
 
         Account eur = new Account("4545121236367878");
@@ -24,6 +27,7 @@ class ClientBanking {
         eur.setBalance(5000);
         eur.setBalanceInUAH();
         eur.setType();
+        eur.setBlock("unblock");
         accounts.add(eur);
 
         Account creditUAH = new Account("5252565685857474");
@@ -31,13 +35,10 @@ class ClientBanking {
         creditUAH.setBalance(-12524.44);
         creditUAH.setBalanceInUAH();
         creditUAH.setType();
+        creditUAH.setBlock("unblock");
         accounts.add(creditUAH);
 
-        for (Account a : accounts) {
-            System.out.println(a);
-
-        }
-        System.out.println("-----------------------------------------");
+        System.out.println("---------------------------------------------");
         System.out.println("---GET INFO ABOUT YOUR ACCOUNTS, SELECT THE ACTION---");
         System.out.println("1. Show all accounts.");
         System.out.println("2. Sort by sum growth.");
@@ -47,15 +48,76 @@ class ClientBanking {
         System.out.println("6. Show amount balance.");
         System.out.println("7. Show the amount of positive-balanced accounts.");
         System.out.println("8. Show the amount of negative-balanced accounts.");
-        System.out.println("Press E for Exit.");
+        System.out.println("9. To block/unblock account");
+        System.out.println("10. To Exit.");
+        System.out.println("----------------------------------------------");
+        while (true) {
+            System.out.println("Chose: ");
+            Scanner scanner = new Scanner(System.in);
+            int choice = scanner.nextInt();
+            switch (choice) {
+                case 1:
+                    for (Account a : accounts) {
+                        System.out.println(a);
+                    }
+                    break;
+                case 2:
+                    sortBySum(accounts);
+                    break;
+                case 3:
+                    System.out.println("Input the sum: ");
+                    Scanner scanner1 = new Scanner(System.in);
+                    double minSum = scanner1.nextDouble();
+                    searchByBalance(minSum, accounts);
+                    break;
+                case 4:
+                    System.out.println("Input the currency (UAH, USD, EUR): ");
+                    Scanner scanner2 = new Scanner(System.in);
+                    String inputCurrency = scanner2.next();
+                    searchByCurrency(inputCurrency, accounts);
+                    break;
+                case 5:
+                    System.out.println("Input the account type (debit / credit): ");
+                    Scanner scanner3 = new Scanner(System.in);
+                    String inputType = scanner3.next();
+                    searchByType(inputType, accounts);
+                    break;
+                case 6:
+                    amountBalance(accounts);
+                    break;
+                case 7:
+                    debitAccountBalance(accounts);
+                    break;
+                case 8:
+                    creditAccountBalance(accounts);
+                    break;
+                case 9:
+                    System.out.println("Input the account number:");
+                    System.out.println("----------------------");
+                    for (Account a : accounts) {
+                        System.out.println(a);
+                    }
+                    System.out.println("-------------------------");
+                    Scanner scanner4 = new Scanner(System.in);
+                    String accountNo = scanner4.next();
+                    System.out.println("Input the status (block/unblock):");
+                    Scanner scanner5 = new Scanner(System.in);
+                    String status = scanner5.next();
+                    for (int i = 0; i < accounts.size(); i++) {
+                        if (accountNo.equalsIgnoreCase(accounts.get(i).getAccountNumber())) {
+                            accounts.get(i).setBlock(status);
+                            System.out.println(accounts.get(i));
+                        }
+                    }
+                    break;
+            }
+            if (choice == 10) {
+                System.out.println("---------------------------");
+                System.out.println("Finish!");
+                break;
+            }
 
-//searchByBalance(10000, accounts);
-//searchByCurrency("Uah", accounts);  //+
-//searchByType("credit", accounts); //+
-//        amountBalance(accounts);//+
-//creditAccountBalance(accounts);
-     //   debitAccountBalance(accounts);
-//        sortBySum(accounts);
+        }
 
     }
 
@@ -73,7 +135,7 @@ class ClientBanking {
 
     static void searchByBalance(double balance, ArrayList<Account> accounts) {
         for (int i = 0; i < accounts.size(); i++) {
-            if (balance <+ accounts.get(i).getBalanceInUAH()) {
+            if (balance < +accounts.get(i).getBalanceInUAH()) {
                 System.out.println(accounts.get(i));
             }
         }

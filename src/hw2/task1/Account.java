@@ -8,6 +8,7 @@ class Account {
     private double balance;
     private double balanceInUAH;
     private String type;
+    private boolean block;
 
     public Account(String accountNumber) {
         this.accountNumber = accountNumber;
@@ -53,14 +54,14 @@ class Account {
             System.out.println("You are not allowed to open the account in another currency.");
     }
 
-    public void status(String status) {
-        if (status.equalsIgnoreCase("block")) {
-            System.out.println("Account is blocked!");
-        } else if (status.equalsIgnoreCase("unblock")) {
-            System.out.println("Account is active!");
-        } else {
-            System.out.println("Incorrect status.");
+    public void setBlock(String status) {
+        if (status.equalsIgnoreCase("block")){
+            this.block = true;
+            }else if (status.equalsIgnoreCase("unblock")){
+            this.block = false;
+
         }
+
     }
 
     public String getAccountNumber() {
@@ -83,9 +84,13 @@ class Account {
         return balanceInUAH;
     }
 
+    public boolean isBlock() {
+        return block;
+    }
+
     @Override
     public String toString() {
         return "(" + type +") " + accountNumber + "...balance = " + balance + " (" + currency + ") --- equivalent to UAH = " +
-                balanceInUAH;
+                balanceInUAH + " [block: " + block + "]";
     }
 }
