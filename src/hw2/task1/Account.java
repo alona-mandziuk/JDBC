@@ -1,6 +1,6 @@
 package hw2.task1;
 
-class Account {
+public class Account {
     static final double USDtoUAH = 37.45;
     static final double EURtoUAH = 40.48;
     private String accountNumber;
