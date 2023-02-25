@@ -7,14 +7,20 @@ import java.util.List;
 
 
 interface AccountDAO {
-    void add (Account account);
+    void add(Account account);
+
     List<Account> getAll();
-    void searchByCurrency(String currency);
-    void searchByBalance(double balance);
-    void searchByType(String type);
-    void amountBalance(List<Account> accounts);
-    void debitAccountBalance(List<Account> accounts);
-    void creditAccountBalance(List<Account> accounts);
-    void sortBySum(List<Account> accounts);
+
+    List<Account> searchByCurrency(String currency);
+
+    List<Account> searchByBalance(double balance);
+
+    List<Account> searchByType(String type);
+
+    double amountBalance();
+
+    double debitAccountBalance();
+
+    double creditAccountBalance();
 
 }

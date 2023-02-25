@@ -115,11 +115,8 @@ class ClientBanking {
                 System.out.println("---------------------------");
                 System.out.println("Finish!");
                 break;
-
             }
-
         }
-
     }
 
     static final double USDtoUAH = 37.45;

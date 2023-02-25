@@ -20,27 +20,26 @@ public class Account {
                 throw new Exception("not allowed balance...");
 
             }
-        } this.balance = balance;
-         if (balance < -50000) {
-             throw new Exception("not allowed balance...");
+        }
+        this.balance = balance;
+        if (balance < -50000) {
+            throw new Exception("not allowed balance...");
         } else this.balance = balance;
     }
 
     public void setBalanceInUAH() {
-        if (currency.equalsIgnoreCase("USD")){
+        if (currency.equalsIgnoreCase("USD")) {
             balanceInUAH = balance * USDtoUAH;
-        }else
-        if (currency.equalsIgnoreCase("EUR")){
+        } else if (currency.equalsIgnoreCase("EUR")) {
             balanceInUAH = balance * EURtoUAH;
-        }else
-        if (currency.equalsIgnoreCase("UAH")){
+        } else if (currency.equalsIgnoreCase("UAH")) {
             balanceInUAH = balance;
         }
     }
 
     public String setType() {
         if (balance < 0) {
-            return  type = "Credit";
+            return type = "Credit";
         } else
             return type = "Debit";
     }
@@ -55,13 +54,11 @@ public class Account {
     }
 
     public void setBlock(String status) {
-        if (status.equalsIgnoreCase("block")){
+        if (status.equalsIgnoreCase("block")) {
             this.block = true;
-            }else if (status.equalsIgnoreCase("unblock")){
+        } else if (status.equalsIgnoreCase("unblock")) {
             this.block = false;
-
         }
-
     }
 
     public String getAccountNumber() {
@@ -90,7 +87,7 @@ public class Account {
 
     @Override
     public String toString() {
-        return "(" + type +") " + accountNumber + "...balance = " + balance + " (" + currency + ") --- equivalent to UAH = " +
+        return "(" + type + ") " + accountNumber + "...balance = " + balance + " (" + currency + ") --- equivalent to UAH = " +
                 balanceInUAH + " [block: " + block + "]";
     }
 }
