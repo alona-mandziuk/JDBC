@@ -11,7 +11,7 @@ class AccountJDBCDao implements AccountDAO {
     private Connection getConnection() {
         Connection connection = null;
         try {
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/clientbanking", "root", "21032011philia");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/clientbanking", "root", "root");
             return connection;
         } catch (SQLException e) {
             e.printStackTrace();
