@@ -8,21 +8,32 @@ import java.nio.file.Paths;
 import java.sql.*;
 
 class TestJDBCwithIO {
+
+    public static void main(String[] args) throws IOException {
+
+        String dataQueries = new String(Files.readAllBytes
+                (Paths.get("src/hw1/task2/QueriesToZoomarket.txt")));
+
+        String[] queries = dataQueries.split("\\n");
+
+        executeQueriesFromFile(queries);
+
+    }
+
+
     private static final String URL = "jdbc:mysql://localhost:3306/zoomarket";
     private static final String LOGIN = "root";
     private static final String PASSWORD = "root";
 
-    public static void main(String[] args) throws IOException {
-        String dataQueries = new String(Files.readAllBytes
-                (Paths.get("src/hw1/task2/QueriesToZoomarket.txt")));
-        String[] queries = dataQueries.split("\\n");
-
+    static {
         RegisterDriver.registerDriver();
+    }
 
+    static void executeQueriesFromFile(String[] strings) {
         try (Connection connection = DriverManager.getConnection(URL, LOGIN, PASSWORD);
              Statement statement = connection.createStatement()) {
-            for (int i = 0; i < queries.length; i++) {
-                statement.execute(queries[i]);
+            for (int i = 0; i < strings.length; i++) {
+                statement.execute(strings[i]);
             }
         } catch (SQLException e) {
             e.printStackTrace();
