@@ -9,10 +9,15 @@ import java.sql.*;
 
 class TestJDBCwithIO {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
 
-        String dataQueries = new String(Files.readAllBytes
-                (Paths.get("src/hw1/task2/QueriesToZoomarket.txt")));
+        String dataQueries = null;
+        try {
+            dataQueries = new String(Files.readAllBytes
+                    (Paths.get("src/hw1/task2/QueriesToZoomarket.txt")));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
         String[] queries = dataQueries.split("\\n");
 
