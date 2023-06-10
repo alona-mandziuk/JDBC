@@ -1,5 +1,7 @@
 package hw1.task2;
 
+import hw1.RegisterDriver;
+
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -16,7 +18,7 @@ class TestJDBCwithIO {
         String[] queries = dataQueries.split("\\n");
 
 
-        registerDriver();
+        RegisterDriver.registerDriver();
         Connection connection = null;
         Statement statement = null;
         try {
@@ -34,15 +36,6 @@ class TestJDBCwithIO {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-        }
-    }
-
-    private static void registerDriver() {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            System.out.printf("Driver has successfully loaded!");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
         }
     }
 }

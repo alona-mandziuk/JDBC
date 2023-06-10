@@ -1,5 +1,7 @@
 package hw1.task3;
 
+import hw1.RegisterDriver;
+
 import java.sql.*;
 
 class JoinsDBbyJDBC {
@@ -18,7 +20,7 @@ class JoinsDBbyJDBC {
                 "Another_Info.birthdate from Personnel join Another_Info on Personnel.pers_ID = Another_Info.id " +
                 "join Salary on Personnel.pers_ID = Salary.id where Salary.position = 'manager'";
 
-        registerDriver();
+        RegisterDriver.registerDriver();
         Connection connection = null;
         PreparedStatement statement = null;
         try {
@@ -78,16 +80,6 @@ class JoinsDBbyJDBC {
             }catch (SQLException e){
                 e.printStackTrace();
             }
-        }
-
-
-    }
-    public static void registerDriver (){
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            System.out.println("....Driver has successfully loaded!");
-        }catch (ClassNotFoundException e){
-            e.printStackTrace();
         }
     }
 }
