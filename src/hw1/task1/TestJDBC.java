@@ -8,9 +8,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 class TestJDBC {
-    private static final String URL = "jdbc:mysql://localhost:3306/zoomarket";
-    private static final String LOGIN = "root";
-    private static final String PASSWORD = "root";
+    private static final String URL = System.getenv("URL");
+    private static final String LOGIN = System.getenv("LOGIN");
+    private static final String PASSWORD = System.getenv("PASSWORD");
 
     public static void main(String[] args) {
         RegisterDriver.registerDriver();
@@ -24,7 +24,8 @@ class TestJDBC {
                     "values ('Treats with Lamb flavour', 4.5)");
 
             statement.executeBatch();
-            statement.executeUpdate("update assortment set price = price + 0.6 where product_name = 'Bouncies'");
+            statement.executeUpdate("update assortment set price = price + 0.6 " +
+                    "where product_name = 'Bouncies'");
             statement.execute("delete from assortment where id > 10");
         } catch (SQLException e) {
             e.printStackTrace();

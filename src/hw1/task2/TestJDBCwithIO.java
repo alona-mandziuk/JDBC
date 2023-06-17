@@ -26,9 +26,9 @@ class TestJDBCwithIO {
     }
 
 
-    private static final String URL = "jdbc:mysql://localhost:3306/zoomarket";
-    private static final String LOGIN = "root";
-    private static final String PASSWORD = "root";
+    private static final String URL = System.getenv("URL");
+    private static final String LOGIN = System.getenv("LOGIN");
+    private static final String PASSWORD = System.getenv("PASSWORD");
 
     static {
         RegisterDriver.registerDriver();
