@@ -1,43 +1,10 @@
 package hw2.task1;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-
 class ClientBanking {
-    public static void main(String[] args){
-        List<Account> accounts = new ArrayList<>();
-        Account uah = new Account("5168757542421212");
-        uah.setCurrency("UAH");
-        uah.setBalance(21205);
-        uah.setBalanceInUAH();
-        uah.setType();
-        uah.setBlock("unblock");
-        accounts.add(uah);
-
-        Account usd = new Account("4149523678965412");
-        usd.setCurrency("USD");
-        usd.setBalance(12000);
-        usd.setBalanceInUAH();
-        usd.setType();
-        usd.setBlock("unblock");
-        accounts.add(usd);
-
-        Account eur = new Account("4545121236367878");
-        eur.setCurrency("EUR");
-        eur.setBalance(5000);
-        eur.setBalanceInUAH();
-        eur.setType();
-        eur.setBlock("unblock");
-        accounts.add(eur);
-
-        Account creditUAH = new Account("5252565685857474");
-        creditUAH.setCurrency("UAH");
-        creditUAH.setBalance(-12524.44);
-        creditUAH.setBalanceInUAH();
-        creditUAH.setType();
-        creditUAH.setBlock("unblock");
-        accounts.add(creditUAH);
-
-
+    public static void main(String[] args) {
+        try {
+            AccManipulate.chooseTheActionWithAccount(ClientAccounts.all());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

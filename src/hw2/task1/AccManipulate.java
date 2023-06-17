@@ -1,12 +1,15 @@
 package hw2.task1;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 class AccManipulate {
 
-    static void chooseTheActionWithAccount(List<Account> accounts){
+    /**
+     * Method gets the list of accounts and gives the user opportunity of choosing the action from console.
+     */
+
+    static void chooseTheActionWithAccount(List<Account> accounts) {
         System.out.println("---------------------------------------------");
         System.out.println("---GET INFO ABOUT YOUR ACCOUNTS, SELECT THE ACTION---");
         System.out.println("1. Show all accounts.");
@@ -74,7 +77,12 @@ class AccManipulate {
                     String status = scanner5.next();
                     for (int i = 0; i < accounts.size(); i++) {
                         if (accountNo.equalsIgnoreCase(accounts.get(i).getAccountNumber())) {
-                            accounts.get(i).setBlock(status);
+
+                            if (status.equalsIgnoreCase("block")) {
+                                accounts.get(i).setBlock(true);
+                            } else if (status.equalsIgnoreCase("unblock")) {
+                                accounts.get(i).setBlock(false);
+                            }
                             System.out.println(accounts.get(i));
                         }
                     }
@@ -88,6 +96,9 @@ class AccManipulate {
         }
     }
 
+    /**
+     * Method searches accounts according to input currency.
+     */
     static void searchByCurrency(String currency, List<Account> accounts) {
 
         for (int i = 0; i < accounts.size(); i++) {
@@ -97,6 +108,9 @@ class AccManipulate {
         }
     }
 
+    /**
+     * Method searches accounts according to input balance.
+     */
     static void searchByBalance(double balance, List<Account> accounts) {
         for (int i = 0; i < accounts.size(); i++) {
             if (balance < +accounts.get(i).getBalanceInUAH()) {
@@ -105,6 +119,9 @@ class AccManipulate {
         }
     }
 
+    /**
+     * Method searches accounts according to input account type.
+     */
     static void searchByType(String type, List<Account> accounts) {
 
         for (int i = 0; i < accounts.size(); i++) {
@@ -113,6 +130,10 @@ class AccManipulate {
             }
         }
     }
+
+    /**
+     * Method shows amount balance on all accounts.
+     */
 
     static void amountBalance(List<Account> accounts) {
         double amount1 = 0;
@@ -139,6 +160,10 @@ class AccManipulate {
         System.out.println("Total balance is ..... " + amount);
     }
 
+    /**
+     * Method shows amount balance on debit accounts.
+     */
+
     static void debitAccountBalance(List<Account> accounts) {
         double amount1 = 0;
         double amount2 = 0;
@@ -164,6 +189,9 @@ class AccManipulate {
         System.out.println("Total balance is ..... " + amount);
     }
 
+    /**
+     * Method shows amount balance on credit accounts.
+     */
     static void creditAccountBalance(List<Account> accounts) {
         double amount = 0;
         for (int i = 0; i < accounts.size(); i++) {
@@ -174,6 +202,9 @@ class AccManipulate {
         System.out.println("The total balance of credit account....." + amount);
     }
 
+    /**
+     * Method sorts accounts by sum.
+     */
     static void sortBySum(List<Account> accounts) {
         accounts.sort((a1, a2) -> (int) (a1.getBalanceInUAH() - a2.getBalanceInUAH()));
         for (Account a : accounts) {

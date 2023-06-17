@@ -3,7 +3,7 @@ package hw2.task1;
 public class Account {
 
     private String accountNumber;
-    private String currency;
+    private String accountCurrency;
     private double balance;
     private double balanceInUAH;
     private String type;
@@ -13,11 +13,12 @@ public class Account {
         this.accountNumber = accountNumber;
     }
 
-    public void setBalance(double balance) throws Exception {
-        if (currency.equalsIgnoreCase("USD") || currency.equalsIgnoreCase("EUR")) {
-            if (balance < 0) {
-                throw new Exception("not allowed balance...");
 
+
+    public void setBalance(double balance) throws Exception {
+        if (accountCurrency.equalsIgnoreCase("USD") || accountCurrency.equalsIgnoreCase("EUR")) {
+            if (balance < 0) {
+                throw new Exception("not allowed balance in this currency");
             }
         }
         this.balance = balance;
@@ -27,11 +28,11 @@ public class Account {
     }
 
     public void setBalanceInUAH() {
-        if (currency.equalsIgnoreCase("USD")) {
+        if (accountCurrency.equalsIgnoreCase("USD")) {
             balanceInUAH = balance * Currency.USDtoUAH.getValue();
-        } else if (currency.equalsIgnoreCase("EUR")) {
+        } else if (accountCurrency.equalsIgnoreCase("EUR")) {
             balanceInUAH = balance * Currency.EURtoUAH.getValue();
-        } else if (currency.equalsIgnoreCase("UAH")) {
+        } else if (accountCurrency.equalsIgnoreCase("UAH")) {
             balanceInUAH = balance;
         }
     }
@@ -43,21 +44,17 @@ public class Account {
             return type = "Debit";
     }
 
-    public void setCurrency(String currency) {
-        if (currency.equalsIgnoreCase("USD") ||
-                currency.equalsIgnoreCase("EUR") ||
-                currency.equalsIgnoreCase("UAH")) {
-            this.currency = currency;
+    public void setCurrency(String accountCurrency) {
+        if (accountCurrency.equalsIgnoreCase("USD") ||
+                accountCurrency.equalsIgnoreCase("EUR") ||
+                accountCurrency.equalsIgnoreCase("UAH")) {
+            this.accountCurrency = accountCurrency;
         } else
             System.out.println("You are not allowed to open the account in another currency.");
     }
 
-    public void setBlock(boolean status) {
-        if (status == true) {
-            this.block = true;
-        } else if (status == false) {
-            this.block = false;
-        }
+    public void setBlock(boolean block) {
+        this.block = block;
     }
 
     public String getAccountNumber() {
@@ -65,7 +62,7 @@ public class Account {
     }
 
     public String getCurrency() {
-        return currency;
+        return accountCurrency;
     }
 
     public double getBalance() {
@@ -86,7 +83,7 @@ public class Account {
 
     @Override
     public String toString() {
-        return "(" + type + ") " + accountNumber + "...balance = " + balance + " (" + currency + ") --- equivalent to UAH = " +
+        return "(" + type + ") " + accountNumber + "...balance = " + balance + " (" + accountCurrency + ") --- equivalent to UAH = " +
                 balanceInUAH + " [block: " + block + "]";
     }
 }
