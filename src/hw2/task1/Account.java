@@ -1,8 +1,7 @@
 package hw2.task1;
 
 public class Account {
-    static final double USDtoUAH = 37.45;
-    static final double EURtoUAH = 40.48;
+
     private String accountNumber;
     private String currency;
     private double balance;
@@ -29,9 +28,9 @@ public class Account {
 
     public void setBalanceInUAH() {
         if (currency.equalsIgnoreCase("USD")) {
-            balanceInUAH = balance * USDtoUAH;
+            balanceInUAH = balance * Currency.USDtoUAH.getValue();
         } else if (currency.equalsIgnoreCase("EUR")) {
-            balanceInUAH = balance * EURtoUAH;
+            balanceInUAH = balance * Currency.EURtoUAH.getValue();
         } else if (currency.equalsIgnoreCase("UAH")) {
             balanceInUAH = balance;
         }
@@ -53,10 +52,10 @@ public class Account {
             System.out.println("You are not allowed to open the account in another currency.");
     }
 
-    public void setBlock(String status) {
-        if (status.equalsIgnoreCase("block")) {
+    public void setBlock(boolean status) {
+        if (status == true) {
             this.block = true;
-        } else if (status.equalsIgnoreCase("unblock")) {
+        } else if (status == false) {
             this.block = false;
         }
     }
