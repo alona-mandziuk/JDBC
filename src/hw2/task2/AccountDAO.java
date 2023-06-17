@@ -1,8 +1,7 @@
 package hw2.task2;
 
-import hw2.task1.Account;
+import hw2.task1.Bank.Account;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
