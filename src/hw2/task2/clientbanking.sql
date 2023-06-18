@@ -1,5 +1,5 @@
 use clientbanking;
-
+drop table accounts;
 create table accounts
 (
     accountNumber varchar(16) unique,
@@ -7,5 +7,5 @@ create table accounts
     balance       double(10, 2),
     balanceInUAH  double(10, 2),
     type          varchar(10),
-    block         varchar(10)
+    block         boolean
 );

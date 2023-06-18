@@ -1,7 +1,6 @@
 package hw2.task1.Bank;
 
 public class Account {
-
     String accountNumber;
     String accountCurrency;
     double balance;
